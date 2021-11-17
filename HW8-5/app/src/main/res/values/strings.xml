@@ -1,3 +1,25 @@
 <resources>
-    <string name="app_name">Homework 8</string>
+    <string name="app_name">Weather App</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="z_number">Z-Number: 23481800</string>
+    <string name="name">Giovanni Gonzalez</string>
+    <string name="welcome_Text">Welcome</string>
+    <string name="info_Text">Simple Weather App</string>
+    <string name="placeholder">Enter City or ZIP ...</string>
+    <string name="weather_title">Weather In</string>
+    <string name="country">Country Name</string>
+    <string name="feels_like">Feels like </string>
+    <string name="MIN">Min Temp</string>
+    <string name="MAX">Max Temp</string>
+    <string name="humidity"> Humidity</string>
+    <string name="pressure">Pressure</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="sunset">Sunset</string>
+    <string name="description">Description</string>
+    <string name="Map">Map!</string>
+    <string name="Weather_element">Weather Elements</string>
+    <string name="Weather_data">Data</string>
+
+
+
 </resources>
