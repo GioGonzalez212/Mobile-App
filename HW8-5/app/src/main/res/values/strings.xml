@@ -1,10 +1,9 @@
 <resources>
-    <string name="app_name">Weather App</string>
+    <string name="app_name">Weather App for Homework 8</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="z_number">Z-Number: Z23481800</string>
     <string name="name">Giovanni Gonzalez</string>
-    <string name="HomePage_Text">Home Page!</string>
-    <string name="info_Text">Here you will be able to check the weather by using ZIP-code, City name ot GPS (Geolocation)</string>
+    <string name="info_Text">Enter Zip Code, City Name, or Press GPS Button to get Weather Data</string>
     <string name="placeholder">Enter City or ZIP ...</string>
     <string name="weather_title">Weather for :</string>
     <string name="country">Country Name</string>
