@@ -1,22 +1,3 @@
 <resources>
-    <string name="app_name">Giovanni Weather App</string>
-    <string name="z_number">Z-Number: Z23481800 </string>
-    <string name="potter">Giovanni Gonzalez</string>
-    <string name="welcome_Text">Welcome!</string>
-    <string name="info_Text">Here you will be able to check the weather by using ZIP-code, City name ot GPS (Geolocation)</string>
-    <string name="placeholder">Enter City or ZIP ...</string>
-    <string name="weather_tittle">Weather for :</string>
-    <string name="country">Country</string>
-    <string name="feels_like">Feels like </string>
-    <string name="MIN">Min Temp</string>
-    <string name="MAX">Max Temp</string>
-    <string name="humidity"> Humidity</string>
-    <string name="pressure">Pressure</string>
-    <string name="sunrise">Sunrise</string>
-    <string name="sunset">Sunset</string>
-    <string name="description">Description</string>
-    <string name="Map">Click here to see map</string>
-    <string name="title_activity_maps">MapsActivity</string>
-    <string name="title_activity_maps2">MapsActivity2</string>
-
+    <string name="app_name">Homework 8</string>
 </resources>
