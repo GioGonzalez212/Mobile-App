@@ -1,36 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    tools:context=".weather_context">
+
+
     <TextView
         android:id="@+id/weather_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:text="@string/weather_title"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <TableLayout
         android:id="@+id/tableLayout"
-        android:layout_width="339dp"
-        android:layout_height="408dp"
+        android:layout_width="wrap_content"
+        android:layout_height="365dp"
         android:layout_margin="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="124dp"
         android:background="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@+id/map_BTN"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weather_Title">
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <!-- Table Data -->
 
@@ -68,20 +67,20 @@
         <TableRow>
 
             <TextView
-                android:id="@+id/country"
+                android:id="@+id/pressure"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="@string/country"
+                android:text="@string/pressure"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
 
             <TextView
-                android:id="@+id/country_Value"
+                android:id="@+id/pressure_Value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
@@ -96,20 +95,20 @@
         <TableRow>
 
             <TextView
-                android:id="@+id/feel_like"
+                android:id="@+id/temp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="@string/feels_like"
+                android:text="@string/temp"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
 
             <TextView
-                android:id="@+id/feelsLike_Value"
+                android:id="@+id/temperature_Value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
@@ -211,22 +210,22 @@
         <TableRow>
 
             <TextView
-                android:id="@+id/pressure"
+                android:id="@+id/longi"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="@string/pressure"
+                android:text="@string/lon"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
 
             <TextView
-                android:id="@+id/pressure_Value"
+                android:id="@+id/longi_Value"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="4"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
@@ -240,20 +239,20 @@
         <TableRow>
 
             <TextView
-                android:id="@+id/desc"
+                android:id="@+id/latitu"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="@string/description"
+                android:text="@string/lat"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
 
             <TextView
-                android:id="@+id/desc_Value"
+                android:id="@+id/latitu_Value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
@@ -322,20 +321,49 @@
         </TableRow>
     </TableLayout>
 
-    <Button
-        android:id="@+id/map_BTN"
-        android:layout_width="120dp"
+    <TextView
+        android:id="@+id/studentID"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
-        android:backgroundTint="@android:color/darker_gray"
-        android:text="@string/Map"
-        android:textAlignment="center"
+        android:text="@string/z_number"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/student_Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/name"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/studentID"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/student_Name2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/name"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/studentID"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/Info_For_Speech"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weather_Title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

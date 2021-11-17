@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <include
-        layout="@layout/home_main"
+        layout="@layout/weather_main"
         android:layout_width="407dp"
         android:layout_height="648dp"
         android:layout_above="@+id/bottom_navigation"

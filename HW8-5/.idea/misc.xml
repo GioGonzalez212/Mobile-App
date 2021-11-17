@@ -3,15 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/govac/AndroidStudioProjects/GitHub Repo/HW8-5/app/src/main/res/layout/activity_forcast.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/govac/AndroidStudioProjects/GitHub Repo/HW8-5/app/src/main/res/layout/activity_main.xml" value="0.17916666666666667" />
-        <entry key="..\:/Users/govac/AndroidStudioProjects/GitHub Repo/HW8-5/app/src/main/res/layout/activity_maps.xml" value="0.17916666666666667" />
-        <entry key="..\:/Users/govac/AndroidStudioProjects/GitHub Repo/HW8-5/app/src/main/res/layout/activity_weather_content.xml" value="0.17916666666666667" />
-        <entry key="..\:/Users/govac/AndroidStudioProjects/GitHub Repo/HW8-5/app/src/main/res/layout/google_maps_api.xml" value="0.17916666666666667" />
-        <entry key="..\:/Users/govac/AndroidStudioProjects/GitHub Repo/HW8-5/app/src/main/res/layout/home_search.xml" value="0.17916666666666667" />
-        <entry key="..\:/Users/govac/AndroidStudioProjects/GitHub Repo/HW8-5/app/src/main/res/layout/map.xml" value="0.17916666666666667" />
-        <entry key="..\:/Users/govac/AndroidStudioProjects/GitHub Repo/HW8-5/app/src/main/res/layout/weather_content.xml" value="0.17916666666666667" />
-        <entry key="..\:/Users/govac/AndroidStudioProjects/GitHub Repo/HW8-5/app/src/main/res/menu/nav_menu.xml" value="0.17916666666666667" />
       </map>
     </option>
   </component>

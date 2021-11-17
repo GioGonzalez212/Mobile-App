@@ -1,18 +1,20 @@
 package com.example.homework8;
 
-import android.content.Intent;
-import android.icu.text.SimpleDateFormat;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Build;
 import android.os.Bundle;
+import android.content.Intent;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -20,70 +22,86 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.text.DecimalFormat;
-import java.util.Date;
 
-public class WeatherTable extends AppCompatActivity {
-    public String zip_OR_city, temp, feel_like, min_Temp, max_Temp, humidity, pressure, lat, lon, country, description, sunrise, sunset;
-    TextView weather_Title, CO, feels, minTemp, maxTemp, humid, press, desc, sunriseT, sunsetT;
+import java.text.DecimalFormat;
+import android.icu.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+public class weather_context extends AppCompatActivity {
+    //declaring all the items that are going to be saved form the JSON reponse
+    public String zip_OR_city, temp, min_Temp, max_Temp, humidity, pressure, lat, lon, country, description, sunrise, sunset;
+    TextView weather_Title, CO, minTemp, maxTemp, humid, press, sunriseT, sunsetT, longitude, latitude,temperature;
     private static final DecimalFormat df =  new DecimalFormat("0.00");
+
+    //text to speech
+    TextToSpeech t1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_weather_main);
+
+        //assign t1 for the speech
+        t1=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR) {
+                    t1.setLanguage(Locale.UK);
+                }
+            }
+        });
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.action_results);
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener()  {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_home:
+                        Intent mainIntent =  new Intent( weather_context.this, MainActivity.class);
+                        startActivity(mainIntent);
+                        break;
+                    case R.id.action_results:
+                        String toSpeak = weather_Title.getText().toString();
+                        Toast.makeText(getApplicationContext(), toSpeak,Toast.LENGTH_SHORT).show();
+                        t1.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null);
+                        break;
+                    case R.id.action_map:
+                        Intent mapIntent =  new Intent( weather_context.this, MapsActivity.class);
+                        mapIntent.putExtra("latitude", lat);
+                        mapIntent.putExtra("longitude", lon);
+                        mapIntent.putExtra("city", zip_OR_city);
+                        startActivity(mapIntent);
+                        break;
+                    case R.id.action_history:
+                        Toast.makeText(weather_context.this, "History", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+                return true;
+            }
+        });
+
         // get intent from other activity and get string
         Intent intent = getIntent();
         String url = intent.getStringExtra("url");
 
-
-        setContentView(R.layout.activity_weather_content);
-        //Initialize and Assign Variables
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        //Set Home Selector
-        bottomNavigationView.setSelectedItemId(R.id.ic_weather);
-        //Perform ItemSelectedListener
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.ic_weather:
-                        return true;
-                    case R.id.ic_home:
-                        startActivity(new Intent(getApplicationContext(),
-                                MainActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.ic_map:
-                        startActivity(new Intent(getApplicationContext(),
-                                MapsActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.ic_calender:
-                        startActivity(new Intent(getApplicationContext(),
-                                Forcast.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                }
-                return false;
-            }
-        });
-
         //declare items
-        weather_Title = findViewById(R.id.weather_Title);
-        CO = findViewById(R.id.country_Value);
-        feels =  findViewById(R.id.feelsLike_Value);
-        minTemp =  findViewById(R.id.minTemp_Value);
-        maxTemp =  findViewById(R.id.maxTemp_Value);
-        humid = findViewById(R.id.humidity_Value);
-        press = findViewById(R.id.pressure_Value);
-        desc = findViewById(R.id.desc_Value);
-        sunriseT = findViewById(R.id.sunrise_Value);
-        sunsetT = findViewById(R.id.sunset_Value);
-        //declaring button
-        Button map_Button = findViewById(R.id.map_BTN);
+        weather_Title = (TextView) findViewById(R.id.weather_Title);
+        press = (TextView) findViewById(R.id.pressure_Value);
+        temperature = (TextView) findViewById(R.id.temperature_Value);
+        minTemp = (TextView) findViewById(R.id.minTemp_Value);
+        maxTemp = (TextView) findViewById(R.id.maxTemp_Value);
+        humid =  (TextView) findViewById(R.id.humidity_Value);
+        longitude = (TextView) findViewById(R.id.longi_Value);
+        latitude = (TextView) findViewById(R.id.latitu_Value);
+        sunriseT = (TextView) findViewById(R.id.sunrise_Value);
+        sunsetT = (TextView) findViewById(R.id.sunset_Value);
+
 
         //doing the request with volley
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -105,18 +123,9 @@ public class WeatherTable extends AppCompatActivity {
         //add the request to the RequestQueue
         queue.add(stringRequest);
 
-        map_Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mapIntent =  new Intent( getApplicationContext(), MapsActivity.class);
-                mapIntent.putExtra("latitude", lat);
-                mapIntent.putExtra("longitude", lon);
-                mapIntent.putExtra("city", zip_OR_city);
-                startActivity(mapIntent);
-            }
-        });
 
-    }//end of on create
+    }// end of onCreate
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void handleResponse(String response){
         //check if response is empty
@@ -132,7 +141,6 @@ public class WeatherTable extends AppCompatActivity {
                 //in main part of the JSON
                 JSONObject main = new JSONObject(jsonObject.getString("main"));
                 temp = main.getString("temp");
-                feel_like = main.getString("feels_like");
                 min_Temp = main.getString("temp_min");
                 max_Temp = main.getString("temp_max");
                 humidity = main.getString("humidity");
@@ -173,13 +181,13 @@ public class WeatherTable extends AppCompatActivity {
     public void place_info(){
         //putting all the necessary information on the activity
         weather_Title.setText("Weather For " + zip_OR_city + ":");
-        CO.setText(country);
-        feels.setText(k_to_f(feel_like));
+        press.setText(pressure + " hPa");
+        temperature.setText(k_to_f(temp));
         minTemp.setText(k_to_f(min_Temp));
         maxTemp.setText(k_to_f(max_Temp));
         humid.setText(humidity + "%");
-        press.setText(pressure + " hPa");
-        desc.setText(description);
+        longitude.setText(lon);
+        latitude.setText(lat);
         sunriseT.setText(unix_to_human(sunrise));
         sunsetT.setText(unix_to_human(sunset));
     } // end of place_info
@@ -204,4 +212,13 @@ public class WeatherTable extends AppCompatActivity {
 
         return df.format(f) + "°F";
     }//end of F calculation
-}
+
+    public void onPause(){
+        if(t1 !=null){
+            t1.stop();
+            t1.shutdown();
+        }
+        super.onPause();
+    }// end of onPause
+
+} //end of weather_information

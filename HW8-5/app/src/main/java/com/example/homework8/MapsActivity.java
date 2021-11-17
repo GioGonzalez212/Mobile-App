@@ -1,78 +1,87 @@
 package com.example.homework8;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
-import com.example.homework8.databinding.ActivityMapsBinding;
+import android.os.Bundle;
+
+
+import android.content.Intent;
+import android.view.MenuItem;
+import android.widget.Toast;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.example.homework8.databinding.ActivityMapsBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+
     private GoogleMap mMap;
-    private ActivityMapsBinding binding;
+
     double lat, lon;
     String city;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
+        setContentView(R.layout.activity_maps_main);
 
 
-
-        //Initialize and Assign Variables
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        //Set Home Selector
-        bottomNavigationView.setSelectedItemId(R.id.ic_map);
-        //Perform ItemSelectedListener
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.ic_weather:
-                        startActivity(new Intent(getApplicationContext(),
-                                WeatherTable.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.ic_home:
-                        startActivity(new Intent(getApplicationContext(),
-                                MainActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.ic_map:
-
-                        return true;
-                    case R.id.ic_calender:
-                        startActivity(new Intent(getApplicationContext(),
-                                Forcast.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                }
-                return false;
-            }
-        });
         Intent intent = getIntent();
         lat = Double.parseDouble(intent.getStringExtra("latitude"));
         lon = Double.parseDouble(intent.getStringExtra("longitude"));
         city = intent.getStringExtra("city");
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.maps);
-        assert mapFragment != null;
-        mapFragment.getMapAsync(MapsActivity.this);
 
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.action_map);
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener()  {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_home:
+                        Intent mainIntent =  new Intent( MapsActivity.this, MainActivity.class);
+                        startActivity(mainIntent);
+                        break;
+                    case R.id.action_results:
+                        Toast.makeText(MapsActivity.this, "Go to home to search again!", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.action_map:
+                        Toast.makeText(MapsActivity.this, "Map", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.action_history:
+                        Toast.makeText(MapsActivity.this, "History", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+                return true;
+            }
+        });
+
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
     }
+
+    /**
+     * Manipulates the map once available.
+     * This callback is triggered when the map is ready to be used.
+     * This is where we can add markers or lines, add listeners or move the camera. In this case,
+     * we just add a marker near Sydney, Australia.
+     * If Google Play services is not installed on the device, the user will be prompted to install
+     * it inside the SupportMapFragment. This method will only be triggered once the user has
+     * installed Google Play services and returned to the app.
+     */
     @Override
-    public void onMapReady(@NonNull GoogleMap googleMap) {
+    public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
+        // Add a marker in Sydney and move the camera
         LatLng location = new LatLng(lat, lon);
         mMap.addMarker(new MarkerOptions().position(location).title(city));
         float zoomLevel = 12.0f;
