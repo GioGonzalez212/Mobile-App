@@ -159,12 +159,6 @@ public class weather_context extends AppCompatActivity {
                 lon = coord.getString("lon");
                 lat = coord.getString("lat");
 
-                //get the sys part of the JSON
-                JSONObject sys = new JSONObject(jsonObject.getString("sys"));
-                country = sys.getString("country");
-                sunrise = sys.getString("sunrise");
-                sunset = sys.getString("sunset");
-
                 //get the weather part of the JSON
                 JSONArray weather = jsonObject.getJSONArray("weather");
                 JSONObject weather_C = weather.getJSONObject(0);
@@ -221,12 +215,6 @@ public class weather_context extends AppCompatActivity {
         return df.format(f) + "°F";
     }//end of F calculation
 
-    public void onPause(){
-        if(t1 !=null){
-            t1.stop();
-            t1.shutdown();
-        }
-        super.onPause();
-    }// end of onPause
+
 
 } //end of weather_information
