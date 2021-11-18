@@ -28,7 +28,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     //OpenWeatherMaps API info
-    public static final String WEATHER_API_KEY = "871d3b5e0c7b27dcb99a527068d4482d";
+    public static final String WEATHER_API_KEY = "9b62e565e692ab0a108fdeef89e96980";
     public static final String URL = "https://api.openweathermap.org/data/2.5/weather?appid=";
     //Intent needed
     public static final String EXTRA_MESSAGE = "com./*EXAMPLE*/.weatherrams.MESSAGE";

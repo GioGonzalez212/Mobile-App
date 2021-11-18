@@ -34,7 +34,7 @@ import java.util.Locale;
 
 public class weather_context extends AppCompatActivity {
     //declaring all the items that are going to be saved form the JSON reponse
-    public String zip_OR_city, temp, min_Temp, max_Temp, humidity, pressure, lat, lon, country, description, sunrise, sunset;
+    public String zip_OR_city, dateTime, temp, min_Temp, max_Temp, humidity, pressure, lat, lon, country, description, sunrise, sunset;
     TextView weather_Title, CO, minTemp, maxTemp, humid, press, sunriseT, sunsetT, longitude, latitude,temperature;
     private static final DecimalFormat df =  new DecimalFormat("0.00");
 
@@ -67,6 +67,7 @@ public class weather_context extends AppCompatActivity {
                         startActivity(mainIntent);
                         break;
                     case R.id.action_results:
+                        //Speak for Weather Title
                         String toSpeak = weather_Title.getText().toString();
                         Toast.makeText(getApplicationContext(), toSpeak,Toast.LENGTH_SHORT).show();
                         t1.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null);
@@ -76,10 +77,15 @@ public class weather_context extends AppCompatActivity {
                         mapIntent.putExtra("latitude", lat);
                         mapIntent.putExtra("longitude", lon);
                         mapIntent.putExtra("city", zip_OR_city);
+                        mapIntent.putExtra("date", dateTime);
                         startActivity(mapIntent);
                         break;
                     case R.id.action_history:
-                        Toast.makeText(weather_context.this, "History", Toast.LENGTH_SHORT).show();
+                        Intent historyIntent =  new Intent( weather_context.this, HistoryActivity.class);
+                        historyIntent.putExtra("latitude", lat);
+                        historyIntent.putExtra("longitude", lon);
+                        historyIntent.putExtra("date", dateTime);
+                        startActivity(historyIntent);
                         break;
                 }
                 return true;
@@ -145,6 +151,8 @@ public class weather_context extends AppCompatActivity {
                 max_Temp = main.getString("temp_max");
                 humidity = main.getString("humidity");
                 pressure = main.getString("pressure");
+
+                dateTime = jsonObject.getString("dt");
 
                 //get coord part of the JSON
                 JSONObject coord = new JSONObject(jsonObject.getString("coord"));

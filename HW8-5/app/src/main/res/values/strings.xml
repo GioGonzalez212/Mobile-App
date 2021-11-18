@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">Weather App for Homework 8</string>
+    <string name="app_name">Weather App Homework 8</string>
     <string name="title_activity_maps">MapsActivity</string>
-    <string name="z_number">Z-Number: Z23481800</string>
+    <string name="z_number">Z-Number: Z23481800 </string>
     <string name="name">Giovanni Gonzalez</string>
-    <string name="info_Text">Enter Zip Code, City Name, or Press GPS Button to get Weather Data</string>
+    <string name="HomePage_Text">Home Page!</string>
+    <string name="info_Text">Enter Zip Code, City Name, or GPS Button for Weather Data</string>
     <string name="placeholder">Enter City or ZIP ...</string>
     <string name="weather_title">Weather for :</string>
     <string name="country">Country Name</string>
@@ -21,5 +22,4 @@
     <string name="Weather_element">Weather Elements</string>
     <string name="Weather_data">Data</string>
     <string name="Info_For_Speech">Click on the Results on Navbar to hear the Weather results</string>
-    <string name="title_activity_maps2">MapsActivity2</string>
 </resources>

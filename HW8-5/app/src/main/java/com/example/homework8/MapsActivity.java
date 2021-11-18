@@ -25,7 +25,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
 
     double lat, lon;
-    String city;
+    String city,dateTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Intent intent = getIntent();
         lat = Double.parseDouble(intent.getStringExtra("latitude"));
         lon = Double.parseDouble(intent.getStringExtra("longitude"));
+        dateTime = intent.getStringExtra("date");
         city = intent.getStringExtra("city");
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
@@ -55,7 +56,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         Toast.makeText(MapsActivity.this, "Map", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.action_history:
-                        Toast.makeText(MapsActivity.this, "History", Toast.LENGTH_SHORT).show();
+                        Intent historyIntent =  new Intent( MapsActivity.this, HistoryActivity.class);
+                        historyIntent.putExtra("latitude", intent.getStringExtra("latitude"));
+                        historyIntent.putExtra("longitude", intent.getStringExtra("longitude"));
+                        historyIntent.putExtra("date", intent.getStringExtra("date"));
+                        startActivity(historyIntent);
                         break;
                 }
                 return true;
