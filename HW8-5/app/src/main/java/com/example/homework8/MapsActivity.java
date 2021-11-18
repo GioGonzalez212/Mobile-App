@@ -17,7 +17,14 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.homework8.databinding.ActivityMapsBinding;
+import com.google.android.gms.maps.model.TileOverlay;
+import com.google.android.gms.maps.model.TileOverlayOptions;
+import com.google.android.gms.maps.model.TileProvider;
+import com.google.android.gms.maps.model.UrlTileProvider;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -84,12 +91,40 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
+        TileProvider tileProvider = new UrlTileProvider(256, 256) {
+            @Override
+            public URL getTileUrl(int x, int y, int zoom) { /* Define the URL pattern for the tile images */
+                String s = String.format("https://tile.openweathermap.org/map/temp_new/%d/%d/%d.png?appid=9b62e565e692ab0a108fdeef89e96980", zoom, x, y);
+                if (!checkTileExists(x, y, zoom)) {
+                    return null;
+                }
+                try {
+                    return new URL(s);
+                } catch (MalformedURLException e) {
+                    throw new AssertionError(e);
+                }
+            } /*
+             * Check that the tile server supports the requested x, y and zoom.
+             * Complete this stub according to the tile range you support.
+             * If you support a limited range of tiles at different zoom levels, then you
+             * need to define the supported x, y range at each zoom level.
+             */
 
-        // Add a marker in Sydney and move the camera
-        LatLng location = new LatLng(lat, lon);
-        mMap.addMarker(new MarkerOptions().position(location).title(city));
-        float zoomLevel = 12.0f;
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, zoomLevel));
+            private boolean checkTileExists(int x, int y, int zoom) {
+                int minZoom = 12;
+                int maxZoom = 16;
+                return (zoom >= minZoom && zoom <= maxZoom);
+            }
+        };
+
+        LatLng loc = new LatLng(lat,lon);
+        googleMap.addMarker(new MarkerOptions().position(loc).title("You are here!"));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
+        googleMap.moveCamera(CameraUpdateFactory.zoomTo(12));
+        TileOverlay tileOverlay = googleMap.addTileOverlay(new TileOverlayOptions()
+                .tileProvider(tileProvider));
     }
+
+
+
 }
