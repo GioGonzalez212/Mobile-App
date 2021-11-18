@@ -75,19 +75,8 @@ public class MainActivity extends AppCompatActivity {
 
         //declaration of needed items
         EditText userIN = (EditText) findViewById(R.id.user_input);
-        ImageButton go_Button = (ImageButton) findViewById(R.id.goButton);
-        ImageButton location_Button = (ImageButton) findViewById(R.id.LocationButton);
 
-        // getting user geolocation permission
-        try{
-            if (ActivityCompat.checkSelfPermission(this, mPermission) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, new String[]{mPermission}, REQUEST_CODE_PERMISSION);
-                /*if the permission is not granted by the user, this condition
-                 * will execute everytime, otherwise your else part will work */
-            }
-        } catch (Exception e) {
-            Log.e("TAG","Exception is: " + e.getMessage());
-        }
+
 
 
         //adding listener to go button
@@ -119,26 +108,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //add listener to location button
-        location_Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gps = new GPSTracker(MainActivity.this);
 
-                //check if gps is enabled
-                if (gps.canGetLocation()){
-                    String lat = df.format(gps.getLatitude());
-                    String lon = df.format(gps.getLongitude());
-                    Log.e("TAG", "[+] lat is: "  + lat + "\n [+] lon is: " + lon);
-                    onLocationGO(lat, lon);
-                } else {
-                    //cant get location
-                    // GPS or network is not enable
-                    // Ask user to enable GPS or check settings
-                    gps.showSettingsAlert();
-                }
-            }
-        });
 
         //add listener to speech to text button
         textView = findViewById(R.id.user_input);
