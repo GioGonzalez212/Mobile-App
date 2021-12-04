@@ -10,7 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c4ff5a3-7745-4a19-857e-1f780a1a0eba" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/homework8/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/homework8/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +35,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../COP4655-HW8-5" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="android.template.-601816557">
@@ -146,7 +146,35 @@
       <option name="project" value="LOCAL" />
       <updated>1637207803853</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Adjustments">
+      <created>1637208170740</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1637208170740</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Project is done">
+      <created>1637208317283</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1637208317283</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Project is done (Added footer to History Page)">
+      <created>1637209361847</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1637209361847</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Project is done (Fixed Map Overlay)">
+      <created>1637209787282</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1637209787282</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -167,6 +195,9 @@
     <MESSAGE value="Make adjustments to map activities and removed a home page element" />
     <MESSAGE value="Added history functionality which required changes in most files. Text to speech and Speech to text recognition." />
     <MESSAGE value="Adjustments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adjustments" />
+    <MESSAGE value="Project is done" />
+    <MESSAGE value="Project is done (Added footer to History Page)" />
+    <MESSAGE value="Project is done (Fixed Map Overlay)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Project is done (Fixed Map Overlay)" />
   </component>
 </project>
