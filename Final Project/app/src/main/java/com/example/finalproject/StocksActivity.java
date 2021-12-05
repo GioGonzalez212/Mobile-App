@@ -60,12 +60,7 @@ public class StocksActivity extends AppCompatActivity {
                     case R.id.action_stocks:
                         Toast.makeText(StocksActivity.this, "Crypto", Toast.LENGTH_SHORT).show();
                         break;
-                    case R.id.action_favorites:
-                        Toast.makeText(StocksActivity.this, "Favorites", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.action_news:
-                        Toast.makeText(StocksActivity.this, "News", Toast.LENGTH_SHORT).show();
-                        break;
+
                 }
                 return true;
             }

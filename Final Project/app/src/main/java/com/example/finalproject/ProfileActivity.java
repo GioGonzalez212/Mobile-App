@@ -43,12 +43,7 @@ public class ProfileActivity extends AppCompatActivity {
                         Intent stocksIntent =  new Intent( ProfileActivity.this, StocksActivity.class);
                         startActivity(stocksIntent);
                         break;
-                    case R.id.action_favorites:
-                        Toast.makeText(ProfileActivity.this, "Favorites", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.action_news:
-                        Toast.makeText(ProfileActivity.this, "News", Toast.LENGTH_SHORT).show();
-                        break;
+
                 }
                 return true;
             }

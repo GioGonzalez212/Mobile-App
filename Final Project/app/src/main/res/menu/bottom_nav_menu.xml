@@ -13,16 +13,4 @@
         android:icon="@drawable/ic_action_stocks"
         android:title="Crypto"
         app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_favorites"
-        android:enabled="true"
-        android:icon="@drawable/ic_action_favorites"
-        android:title="Favorites"
-        app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_news"
-        android:enabled="true"
-        android:icon="@drawable/ic_action_news"
-        android:title="News"
-        app:showAsAction="ifRoom" />
 </menu>
