@@ -55,7 +55,12 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_stocks:
                         Toast.makeText(MainActivity.this, "Please Sign In to view.", Toast.LENGTH_SHORT).show();
                         break;
-
+                    case R.id.action_favorites:
+                        Toast.makeText(MainActivity.this, "Please Sign In to view.", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.action_news:
+                        Toast.makeText(MainActivity.this, "Please Sign In to view.", Toast.LENGTH_SHORT).show();
+                        break;
                 }
                 return true;
             }
