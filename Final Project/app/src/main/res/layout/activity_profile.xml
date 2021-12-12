@@ -14,13 +14,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="User Info"
-        android:textSize="20sp"
         android:translationY="-80dp" />
 
     <ImageView
         android:id="@+id/ImageTv"
-        android:layout_width="158dp"
-        android:layout_height="143dp"
+        android:layout_width="125dp"
+        android:layout_height="111dp"
         android:translationY="-50dp" />
 
     <TextView

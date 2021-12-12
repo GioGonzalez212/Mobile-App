@@ -10,8 +10,6 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-
-
 import com.google.android.gms.common.SignInButton;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;

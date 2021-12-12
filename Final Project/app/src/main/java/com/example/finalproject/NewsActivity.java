@@ -6,16 +6,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -35,40 +31,40 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StocksActivity extends AppCompatActivity {
+public class NewsActivity extends AppCompatActivity {
 
-    private RecyclerView currencyRV;
+    private RecyclerView newsRV;
     private EditText searchEdt;
-    private ArrayList<Currency> currencyModalArrayList;
-    private CurrencyAdapter currencyRVAdapter;
+    private ArrayList<News> newsModalArrayList;
+    private NewsAdapter NewsRVAdapter;
     private ProgressBar loadingPB;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.stocks_main);
-        searchEdt = findViewById(R.id.etSearch);
+        setContentView(R.layout.news_main);
+        searchEdt = findViewById(R.id.etNSearch);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.action_stocks);
+        bottomNavigationView.setSelectedItemId(R.id.action_news);
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener()  {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_signin:
-                        Intent profileIntent =  new Intent( StocksActivity.this, ProfileActivity.class);
+                        Intent profileIntent =  new Intent( NewsActivity.this, ProfileActivity.class);
                         startActivity(profileIntent);
                         break;
                     case R.id.action_stocks:
-                        Toast.makeText(StocksActivity.this, "Crypto", Toast.LENGTH_SHORT).show();
+                        Intent stockIntent = new Intent(NewsActivity.this,StocksActivity.class);
+                        startActivity(stockIntent);
                         break;
                     case R.id.action_favorites:
-                        Toast.makeText(StocksActivity.this, "Favorites", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NewsActivity.this, "Favorites", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.action_news:
-                        Intent newsIntent = new Intent(StocksActivity.this,NewsActivity.class);
-                        startActivity(newsIntent);
+                        Toast.makeText(NewsActivity.this, "News", Toast.LENGTH_SHORT).show();
                         break;
                 }
                 return true;
@@ -76,21 +72,22 @@ public class StocksActivity extends AppCompatActivity {
         });
 
         // initializing all our variables and array list.
-        loadingPB = findViewById(R.id.idPBLoading);
-        currencyRV = findViewById(R.id.list);
-        currencyModalArrayList = new ArrayList<>();
+        loadingPB = findViewById(R.id.idPBNLoading);
+        newsRV = findViewById(R.id.Nlist);
+        newsModalArrayList = new ArrayList<>();
 
         // initializing our adapter class.
-        currencyRVAdapter = new CurrencyAdapter(currencyModalArrayList, this);
+        NewsRVAdapter = new NewsAdapter(newsModalArrayList, this);
 
         // setting layout manager to recycler view.
-        currencyRV.setLayoutManager(new LinearLayoutManager(this));
+        newsRV.setLayoutManager(new LinearLayoutManager(this));
 
         // setting adapter to recycler view.
-        currencyRV.setAdapter(currencyRVAdapter);
+        newsRV.setAdapter(NewsRVAdapter);
 
         // calling get data method to get data from API.
         getData();
+
 
         searchEdt.addTextChangedListener(new TextWatcher() {
             @Override
@@ -111,15 +108,14 @@ public class StocksActivity extends AppCompatActivity {
             }
         });
 
-
-    }
+    }//end of OnCreate
 
     private void filter(String filter) {
         // on below line we are creating a new array list
         // for storing our filtered data.
-        ArrayList<Currency> filteredlist = new ArrayList<>();
+        ArrayList<News> filteredlist = new ArrayList<>();
         // running a for loop to search the data from our array list.
-        for (Currency item : currencyModalArrayList) {
+        for (News item : newsModalArrayList) {
             // on below line we are getting the item which are
             // filtered and adding it to filtered list.
             if (item.getName().toLowerCase().contains(filter.toLowerCase())) {
@@ -134,7 +130,7 @@ public class StocksActivity extends AppCompatActivity {
         } else {
             // on below line we are calling a filter
             // list method to filter our list.
-            currencyRVAdapter.filterList(filteredlist);
+            NewsRVAdapter.filterList(filteredlist);
         }
     }
 
@@ -159,24 +155,26 @@ public class StocksActivity extends AppCompatActivity {
                         JSONObject dataObj = dataArray.getJSONObject(i);
                         String symbol = dataObj.getString("originalSymbol");
                         String name = dataObj.getString("name");
-                        double price = dataObj.getDouble("price");
+                        double LastHour = dataObj.getDouble("change1Hour");
+                        double LastWeek = dataObj.getDouble("change1Week");
+                        String UpdateDate = dataObj.getString("lastUpdate");
                         //String image = dataObj.getString("image");
                         // adding all data to our array list.
-                        currencyModalArrayList.add(new Currency(name, symbol, price));
+                        newsModalArrayList.add(new News(name, symbol,LastHour,LastWeek,UpdateDate));
                     }
                     // notifying adapter on data change.
-                    currencyRVAdapter.notifyDataSetChanged();
+                    NewsRVAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     // handling json exception.
                     e.printStackTrace();
-                    Toast.makeText(StocksActivity.this, "Something went amiss. Please try again later", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NewsActivity.this, "Something went amiss. Please try again later", Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 // displaying error response when received any error.
-                Toast.makeText(StocksActivity.this, "Something went amiss. Please try again later", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewsActivity.this, "Something went amiss. Please try again later", Toast.LENGTH_SHORT).show();
             }
         }){
             @Override
@@ -194,6 +192,5 @@ public class StocksActivity extends AppCompatActivity {
         queue.add(jsonObjectRequest);
 
     }
-
 
 }

@@ -32,7 +32,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/etSearch"
+        android:id="@+id/etNSearch"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -42,19 +42,18 @@
         android:minHeight="48dp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list"
+        android:id="@+id/Nlist"
         android:layout_width="380dp"
         android:layout_height="440dp"
         android:layout_above="@+id/student_Name"
-        android:layout_below="@+id/etSearch"
-        android:background="@color/colorPrimary"
+        android:layout_below="@+id/etNSearch"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        tools:listitem="@layout/list_item"/>
+        tools:listitem="@layout/news_item"/>
 
     <ProgressBar
-        android:id="@+id/idPBLoading"
+        android:id="@+id/idPBNLoading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"

@@ -47,7 +47,8 @@ public class ProfileActivity extends AppCompatActivity {
                         Toast.makeText(ProfileActivity.this, "Favorites", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.action_news:
-                        Toast.makeText(ProfileActivity.this, "News", Toast.LENGTH_SHORT).show();
+                        Intent newsIntent = new Intent(ProfileActivity.this,NewsActivity.class);
+                        startActivity(newsIntent);
                         break;
                 }
                 return true;
