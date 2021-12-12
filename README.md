@@ -19,7 +19,7 @@
 **Displays all the cryptocurrencies that were favorited by the user with the heart icon in the crypto page.**
 
 ### <ins>News Page</ins>:
-**Displays all the cryptocurrencies that were favorited by the user with the heart icon in the crypto page.**
+**Displays the rate changes of cryptocurrencies in 1 hour/1 week and the date of change.**
 
 -----------------------------------------------------------------------------------------------------------------------------
 
