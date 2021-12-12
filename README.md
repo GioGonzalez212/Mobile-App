@@ -1,4 +1,4 @@
-# COP4655 Mobile Apps (Final Project)
+# COP4655 Mobile App Projects (Final Project)
 
 **Giovanni Gonzalez**
 
