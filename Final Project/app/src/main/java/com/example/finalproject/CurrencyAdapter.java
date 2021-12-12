@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ public class CurrencyAdapter extends RecyclerView.Adapter<CurrencyAdapter.Curren
     private static DecimalFormat df2 = new DecimalFormat("#.##");
     private ArrayList<Currency> currencyM;
     private Context context;
+    int flag = 0;
 
     public CurrencyAdapter(ArrayList<Currency> currencyModals, Context context) {
         this.currencyM = currencyModals;
@@ -54,6 +56,7 @@ public class CurrencyAdapter extends RecyclerView.Adapter<CurrencyAdapter.Curren
         holder.nameTV.setText(modal.getName());
         holder.rateTV.setText("$ " + df2.format(modal.getPrice()));
         holder.symbolTV.setText(modal.getSymbol());
+
     }
 
     @Override
@@ -67,6 +70,8 @@ public class CurrencyAdapter extends RecyclerView.Adapter<CurrencyAdapter.Curren
     // which will be used to initialize each view of our layout file.
     public class CurrencyViewholder extends RecyclerView.ViewHolder {
         private TextView symbolTV, rateTV, nameTV;
+        private ImageButton imageTVbtn;
+
 
         public CurrencyViewholder(@NonNull View itemView) {
             super(itemView);
@@ -75,6 +80,27 @@ public class CurrencyAdapter extends RecyclerView.Adapter<CurrencyAdapter.Curren
             symbolTV = itemView.findViewById(R.id.idTVSymbol);
             rateTV = itemView.findViewById(R.id.idTVRate);
             nameTV = itemView.findViewById(R.id.idTVName);
+            imageTVbtn = itemView.findViewById(R.id.idTVimagebtn);
+
+
+
+            imageTVbtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(flag == 0)
+                    {
+                        imageTVbtn.setImageResource(R.drawable.ic_baseline_favorite_24);
+                        flag = 1;
+                    }
+                    else if(flag == 1)
+                    {
+                        imageTVbtn.setImageResource(R.drawable.ic_baseline_favorite_border_24);
+                        flag = 0;
+                    }
+
+                }
+            });
+
         }
     }
 }
